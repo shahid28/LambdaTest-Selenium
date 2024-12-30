@@ -1,0 +1,22 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: mvn clean install
+    command: mvn test
+
+ports:
+  - port: 6080
+    onOpen: open-browser
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
+    - testng-team.testng
+
+github:
+  prebuilds:
+    # Enable prebuilds for the default branch, all branches in the repository, and pull requests
+    master: true
+    branches: true
+    pullRequests: true
