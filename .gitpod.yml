@@ -1,9 +1,7 @@
-image:
-  file: .gitpod.Dockerfile
+image: gitpod/workspace-java-17
 
 tasks:
-  - name: Install Java and Dependencies
-    before: sdk install java 17.0.4.1-tem
+  - name: Build and Test
     init: mvn install -DskipTests=true
     command: mvn test
 
