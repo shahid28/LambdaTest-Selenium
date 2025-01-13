@@ -7,6 +7,11 @@ tasks:
     init: mvn install -DskipTests=true
     command: mvn test
 
+# Environment variables for LambdaTest credentials
+env:
+  LT_USERNAME: ${LT_USERNAME}
+  LT_ACCESS_KEY: ${LT_ACCESS_KEY}
+
 ports:
   - port: 4444
     onOpen: ignore

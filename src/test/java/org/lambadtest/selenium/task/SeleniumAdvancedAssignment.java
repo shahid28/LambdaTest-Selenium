@@ -27,23 +27,23 @@ public class SeleniumAdvancedAssignment {
     @Parameters({"browser", "platform"})
     @BeforeClass
     public void setup(String browser, String platform) throws Exception {
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("platformName", platform);
-//        capabilities.setCapability("browserName", browser);
-//        capabilities.setCapability("LT:Options", Map.of(
-//                "username", "abhiruchi_kayande",
-//                "accessKey", "r0FlbXkEQs9laoSgU7Vrpf0SnD6NGXU2Sy1irrakCA0qkTvpxx",
-//                "video", true,
-//                "network", true
-//        ));
+       DesiredCapabilities capabilities = new DesiredCapabilities();
+       capabilities.setCapability("platformName", platform);
+       capabilities.setCapability("browserName", browser);
+       capabilities.setCapability("LT:Options", Map.of(
+               "username", System.getenv("LT_USERNAME"),
+               "accessKey", System.getenv("LT_ACCESS_KEY"),
+               "video", true,
+               "network", true
+       ));
 
 
-//        driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), capabilities);
-//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\ASUS\\Downloads\\chromedriver-win64\\chromedriver.exe");
+       driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), capabilities);
+       driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        // System.setProperty("webdriver.chrome.driver", "C:\\Users\\ASUS\\Downloads\\chromedriver-win64\\chromedriver.exe");
 
-         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //  driver = new ChromeDriver();
+        // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
 
