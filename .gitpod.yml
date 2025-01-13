@@ -2,12 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - before: |
-      sdk install java 17.0.4.1-tem
-  - init: |
-      mvn install -DskipTests=true
-    command: |
-      mvn test
+  - name: Install Java and Dependencies
+    before: sdk install java 17.0.4.1-tem
+    init: mvn install -DskipTests=true
+    command: mvn test
 
 ports:
   - port: 4444
