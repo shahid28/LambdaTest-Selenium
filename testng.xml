@@ -5,14 +5,15 @@
         <parameter name="version" value="128.0"/>
         <parameter name="platform" value="Windows 10" />
         <classes>
-            <class name="org.lambadtest.selenium.task.SeleniumAdvancedAssignment" />
+            <class name="org.lambdatest.selenium.task.SeleniumAdvancedAssignment" />
         </classes>
     </test>
     <test name="Edge on macOS">
         <parameter name="browser" value="edge" />
+        <parameter name="version" value="127.0" />
         <parameter name="platform" value="macOS Ventura" />
         <classes>
-            <class name="org.lambadtest.selenium.task.SeleniumAdvancedAssignment" />
+            <class name="org.lambdatest.selenium.task.SeleniumAdvancedAssignment" />
         </classes>
     </test>
 </suite>
