@@ -2,21 +2,20 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: mvn clean install
-    command: mvn test
+  - before: |sdk install java 17.0.4.1-tem
+  - init: |
+      mvn install -DskipTests=true
+    command: |
+      mvn test
 
 ports:
-  - port: 6080
-    onOpen: open-browser
+  - port: 4444
+    onOpen: ignore
+  - port: 7900
+    onOpen: ignore
 
 vscode:
   extensions:
     - vscjava.vscode-java-pack
-    - testng-team.testng
-
-github:
-  prebuilds:
-    # Enable prebuilds for the default branch, all branches in the repository, and pull requests
-    master: true
-    branches: true
-    pullRequests: true
+    - redhat.java
+    - vscjava.vscode-maven
