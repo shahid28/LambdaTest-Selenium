@@ -2,11 +2,8 @@ package org.lambdatest.selenium.task;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,6 +25,7 @@ public class SeleniumAdvancedAssignment {
     @Parameters({ "browser", "platform", "version" })
     @BeforeClass
     public void setup(String browser, String platform, String version) throws Exception {
+        // Step 1: Set up capabilities,LambdaTest options and driver
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", platform);
         capabilities.setCapability("browserName", browser);
@@ -47,85 +45,6 @@ public class SeleniumAdvancedAssignment {
 
         driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        // System.setProperty("webdriver.chrome.driver",
-        // "C:\\Users\\ASUS\\Downloads\\chromedriver-win64\\chromedriver.exe");
-
-        // driver = new ChromeDriver();
-        // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    }
-
-    public void TestScenario1() throws InterruptedException {
-        driver.get("https://www.lambdatest.com/");
-        driver.manage().window().maximize();
-        Thread.sleep(2000);
-
-        WebElement firstresult = new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(By.xpath(
-                        "//div[@class='text-center mt-25']/a[@href='https://www.lambdatest.com/integrations']")));
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement integrations = driver.findElement(
-                By.xpath("//div[@class='text-center mt-25']/a[@href='https://www.lambdatest.com/integrations']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", integrations);
-        js.executeScript("arguments[0].style.border='2px solid red'", integrations);
-
-        String clicklnk = Keys.chord(Keys.CONTROL, Keys.ENTER);
-        integrations.sendKeys(clicklnk);
-
-        Set<String> allwindows = driver.getWindowHandles();
-        System.out.println("All window handles : " + allwindows);
-        String current = driver.getWindowHandle();
-        System.out.println("Current window handle : " + current);
-
-        ArrayList<String> window1 = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(window1.get(1));
-
-        String Actual_url = driver.getCurrentUrl();
-        String Expected_url = "https://www.lambdatest.com/integrations";
-
-        if (Actual_url.equals(Expected_url)) {
-            System.out.println("url is matched");
-        } else {
-            System.out.println("url is not matched");
-        }
-
-        WebElement codeless = driver.findElement(By.xpath(
-                "//li[4]/a[@class='block px-14 py-9 font-normal text-size-14 hover:bg-black hover:text-white ']"));
-
-        js.executeScript("arguments[0].scrollIntoView(true);", codeless);
-        js.executeScript("arguments[0].style.border='2px solid red'", codeless);
-
-        WebElement learn_more = driver
-                .findElement(By.xpath("//a[@href='https://www.lambdatest.com/support/docs/testingwhiz-integration/']"));
-        learn_more.click();
-        String Expected_title = "TestingWhiz Integration | LambdaTest";
-        String Actual_title = driver.getCurrentUrl();
-
-        if (Expected_title.equals(Actual_title)) {
-            System.out.println("title is matched");
-        } else {
-            System.out.println("Title is not matched!");
-        }
-
-        driver.switchTo().window(window1.get(1)).close();
-        driver.switchTo().window(window1.get(0));
-
-        String url = "https://www.lambdatest.com/";
-        String url1 = url.replaceAll("https://www.lambdatest.com/", "https://www.lambdatest.com/blog");
-        driver.navigate().to(url1);
-
-        WebElement community = driver
-                .findElement(By.xpath("//li[@id='menu-item-10121']/a[@href='https://community.lambdatest.com/']"));
-        js.executeScript("arguments[0].style.border='2px solid red'", community);
-        community.click();
-
-        String Exp_community_url = "https://community.lambdatest.com/";
-        String Act_community_url = driver.getCurrentUrl();
-
-        if (Exp_community_url.equals(Act_community_url)) {
-            System.out.println("Community url is matched");
-        } else
-            System.out.println("Community url is not matched!");
 
     }
 
